@@ -108,7 +108,6 @@ async function handleRequest(request) {
   // For non-protected domains, just pass through
   return fetch(request)
 }
-}
 ```
 
 3. Click **Save and Deploy**
