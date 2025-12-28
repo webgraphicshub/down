@@ -63,13 +63,13 @@ async function handleRequest(request) {
   
   // List of domains that should redirect on error
   const protectedDomains = [
-    'webgraphicshub.com',
-    'www.webgraphicshub.com'
+    'server.webgraphicshub.com',
+    'dev.webgraphicshub.com'
     // Add more domains as needed
   ]
   
   // Down page URL
-  const downPageUrl = 'https://down.webgraphicshub.com'
+  const downPageUrl = 'https://serverdown.pages.dev/'
   
   // Check if this is one of your protected domains
   if (protectedDomains.includes(url.hostname)) {
@@ -107,6 +107,7 @@ async function handleRequest(request) {
   
   // For non-protected domains, just pass through
   return fetch(request)
+}
 }
 ```
 
