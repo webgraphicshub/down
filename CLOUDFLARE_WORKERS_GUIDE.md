@@ -43,7 +43,9 @@ First, upload your "Server is Resting" page to a reliable hosting service that's
 ### 2.1 Navigate to Workers
 1. In your Cloudflare dashboard, click **Workers & Pages** in the left sidebar
 2. Click **Create application**
-3. Click **Create Worker**
+3. You'll see a page with "Ship something new" - on the **left sidebar**, click **Create a Worker**
+   - Note: Don't click the options in the center (GitHub, GitLab, Hello World, etc.) - those are for Pages
+   - The "Create a Worker" option is in the left sidebar
 4. Give it a name like `error-1033-redirect`
 5. Click **Deploy**
 
