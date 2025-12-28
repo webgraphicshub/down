@@ -50,6 +50,21 @@
 
     <!-- Game Section -->
     <div class="game-section">
+      <div class="score-panel">
+        <div class="score-item">
+          <div class="score-label">Current Score</div>
+          <div class="score-value" id="currentScore">0</div>
+        </div>
+        <div class="score-item">
+          <div class="score-label">Previous Score</div>
+          <div class="score-value" id="previousScore">-</div>
+        </div>
+        <div class="score-item highlight">
+          <div class="score-label">🏆 High Score</div>
+          <div class="score-value" id="highScore">0</div>
+        </div>
+      </div>
+
       <div class="game-header">
         <h2 class="game-title">Play Archery While You Wait</h2>
         <p class="game-instruction">Draw back the arrow with your mouse and release to shoot!</p>
@@ -126,22 +141,6 @@
             <path d="M526,195l5-20l22,5l-9,16L526,195z M558,164l32-44l-35-9l-19,51L558,164z" />
           </g>
         </svg>
-      </div>
-
-      <!-- Score Panel (Below Game) -->
-      <div class="score-panel">
-        <div class="score-item">
-          <div class="score-label">Current</div>
-          <div class="score-value" id="currentScore">0</div>
-        </div>
-        <div class="score-item">
-          <div class="score-label">Previous</div>
-          <div class="score-value" id="previousScore">-</div>
-        </div>
-        <div class="score-item highlight">
-          <div class="score-label">🏆 High Score</div>
-          <div class="score-value" id="highScore">0</div>
-        </div>
       </div>
     </div>
 
