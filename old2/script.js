@@ -2,10 +2,9 @@
 function updateCountdown() {
   const now = new Date();
 
-  // Get current time in IST (UTC+5:30)
+  // Convert current time to IST (UTC+5:30)
   const istOffset = 5.5 * 60 * 60 * 1000; // IST offset in milliseconds
-  const utcTime = now.getTime() + (now.getTimezoneOffset() * 60 * 1000); // Convert to UTC
-  const istNow = new Date(utcTime + istOffset); // Convert UTC to IST
+  const istNow = new Date(now.getTime() + istOffset);
 
   // Set target time to 11 AM IST today
   let target = new Date(istNow);
