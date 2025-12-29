@@ -54,60 +54,58 @@ First, upload your "Server is Resting" page to a reliable hosting service that's
 2. Replace the default code with the following:
 
 ```javascript
-addEventListener('fetch', event => {
-  event.respondWith(handleRequest(event.request))
-})
-
-async function handleRequest(request) {
-  const url = new URL(request.url)
-  
-  // List of domains that should redirect on error
-  const protectedDomains = [
-    'server.webgraphicshub.com',
-    'dev.webgraphicshub.com'
-    // Add more domains as needed
-  ]
-  
-  // Down page URL
-  const downPageUrl = 'https://serverdown.pages.dev/'
-  
-  // Check if this is one of your protected domains
-  if (protectedDomains.includes(url.hostname)) {
-    try {
-      // Try to fetch from origin
-      const response = await fetch(request)
-      
-      // Check if we got an error response
-      if (response.status === 502 || response.status === 503 || response.status === 504) {
-        // Redirect to down page
-        return Response.redirect(downPageUrl, 302)
-      }
-      
-      // Check for Cloudflare error page (Error 1033)
-      const contentType = response.headers.get('content-type')
-      if (contentType && contentType.includes('text/html')) {
-        const text = await response.text()
-        if (text.includes('Error 1033') || text.includes('Argo Tunnel error')) {
-          return Response.redirect(downPageUrl, 302)
+export default {
+  async fetch(request, env, ctx) {
+    const url = new URL(request.url);
+    
+    // List of domains that should redirect on error
+    const protectedDomains = [
+      'server.webgraphicshub.com',
+      'dev.webgraphicshub.com'
+      // Add more domains as needed
+    ];
+    
+    // Down page URL
+    const downPageUrl = 'https://serverdown.pages.dev/';
+    
+    // Check if this is one of your protected domains
+    if (protectedDomains.includes(url.hostname)) {
+      try {
+        // Try to fetch from origin
+        const response = await fetch(request);
+        
+        // Check if we got an error response
+        if (response.status === 502 || response.status === 503 || response.status === 504) {
+          // Redirect to down page
+          return Response.redirect(downPageUrl, 302);
         }
-        // Return the original response if no error detected
-        return new Response(text, {
-          status: response.status,
-          statusText: response.statusText,
-          headers: response.headers
-        })
+        
+        // Check for Cloudflare error page (Error 1033)
+        const contentType = response.headers.get('content-type');
+        if (contentType && contentType.includes('text/html')) {
+          const text = await response.text();
+          if (text.includes('Error 1033') || text.includes('Argo Tunnel error')) {
+            return Response.redirect(downPageUrl, 302);
+          }
+          // Return the original response if no error detected
+          return new Response(text, {
+            status: response.status,
+            statusText: response.statusText,
+            headers: response.headers
+          });
+        }
+        
+        return response;
+      } catch (error) {
+        // If fetch fails completely, redirect to down page
+        return Response.redirect(downPageUrl, 302);
       }
-      
-      return response
-    } catch (error) {
-      // If fetch fails completely, redirect to down page
-      return Response.redirect(downPageUrl, 302)
     }
+    
+    // For non-protected domains, just pass through
+    return fetch(request);
   }
-  
-  // For non-protected domains, just pass through
-  return fetch(request)
-}
+};
 ```
 
 3. Click **Save and Deploy**
@@ -289,3 +287,4 @@ You've now set up:
 ✅ All within Cloudflare's free tier!
 
 When your PC is shut down, visitors will be seamlessly redirected to your down page where they can play archery while waiting for the server to come back online at 11 AM IST.
+
