@@ -14,27 +14,39 @@
 
 <body>
   <div class="container">
-    <!-- Compact Header Navigation -->
-    <header class="top-nav">
-      <div class="nav-brand">
-        <div class="status-indicator"></div>
-        <div class="brand-text">
-          <h1 class="nav-title"><span class="gradient-text">Server is Resting</span></h1>
-          <p class="nav-subtitle">Our server is taking a break. We'll be back soon!</p>
-        </div>
+    <!-- Header Section -->
+    <header class="header">
+      <div class="status-badge">
+        <span class="status-dot"></span>
+        <span>Server Offline</span>
       </div>
-
-      <div class="nav-countdown" id="countdown">
-        <div class="next-online-compact">Back online<br><span id="nextOnlineTime">11:00 AM IST</span></div>
-        <div class="compact-timer">
-          <span id="hours">00</span><span class="timer-label">h</span>
-          <span class="pulse-colon">:</span>
-          <span id="minutes">00</span><span class="timer-label">m</span>
-          <span class="pulse-colon">:</span>
-          <span id="seconds">00</span><span class="timer-label">s</span>
-        </div>
-      </div>
+      <h1 class="main-title">
+        <span class="gradient-text">Server is Resting</span>
+      </h1>
+      <p class="subtitle">Our server is taking a well-deserved break. We'll be back soon!</p>
     </header>
+
+    <!-- Countdown Section -->
+    <div class="countdown-section">
+      <div class="countdown-label">Back online in</div>
+      <div class="countdown-timer" id="countdown">
+        <div class="time-unit">
+          <span class="time-value" id="hours">00</span>
+          <span class="time-label">Hours</span>
+        </div>
+        <div class="time-separator">:</div>
+        <div class="time-unit">
+          <span class="time-value" id="minutes">00</span>
+          <span class="time-label">Minutes</span>
+        </div>
+        <div class="time-separator">:</div>
+        <div class="time-unit">
+          <span class="time-value" id="seconds">00</span>
+          <span class="time-label">Seconds</span>
+        </div>
+      </div>
+      <div class="next-online">Next online: <span id="nextOnlineTime">11:00 AM IST</span></div>
+    </div>
 
     <!-- Game Section -->
     <div class="game-section">
